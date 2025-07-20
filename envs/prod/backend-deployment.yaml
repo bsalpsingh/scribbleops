@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:latest # Replace with your actual image
+        image: bsalsingh/scribble-api:1752949638 # Replace with your actual image
         ports:
         - containerPort: 8080
