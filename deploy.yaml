@@ -13,7 +13,7 @@ spec:
     metadata:
       name: scribble-{{env}}
     spec:
-      project: Scribble
+      project: default
       source:
         repoURL: https://github.com/bsalpsingh/scribbleops.git
         targetRevision: HEAD
