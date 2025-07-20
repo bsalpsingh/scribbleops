@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scribble-backend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: scribble-backend
+  template:
+    metadata:
+      labels:
+        app: scribble-backend
+    spec:
+      containers:
+      - name: scribble-backend
+        image: bsalsingh/scribble-api:latest # Replace with your actual image
+        ports:
+        - containerPort: 8080

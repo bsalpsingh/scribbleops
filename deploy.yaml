@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: scribble
+spec:
+  generators:
+    - list:
+        elements:
+          - env: "dev"
+          - env: "prod"
+          - env: "staging"
+  template:
+    metadata:
+      name: scribble-{{env}}
+    spec:
+      project: Scribble
+      source:
+        repoURL: https://github.com/bsalpsingh/scribbleops.git
+        targetRevision: HEAD
+        path: envs/{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{env}}"
+
