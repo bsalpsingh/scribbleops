@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: scribble-backend
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: scribble-backend
@@ -14,6 +14,9 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1752949638 # Replace with your actual image
+        image: bsalsingh/scribble-api:1752949638
         ports:
         - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: scribble-secret
