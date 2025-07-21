@@ -26,7 +26,7 @@ spec:
       canaryService: scribble-backend-preview
       stableService: scribble-backend-stable
       steps:
-      - setWeight: 30
+      - setWeight: 20
       - pause: {duration: 20}
       - setWeight: 50
       - pause: {duration: 10}
