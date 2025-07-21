@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scribble-backend
+  name: scribble-backend-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scribble-backend
+      app: scribble-backend-dev
   template:
     metadata:
       labels:
-        app: scribble-backend
+        app: scribble-backend-dev
     spec:
       containers:
       - name: scribble-backend
