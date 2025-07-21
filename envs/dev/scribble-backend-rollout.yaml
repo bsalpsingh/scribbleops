@@ -18,6 +18,9 @@ spec:
         image: bsalsingh/scribble-api:1753120048 
         ports:
         - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: scribble-secret  
   strategy:
     canary:
       canaryService: scribble-backend-preview
