@@ -27,7 +27,7 @@ spec:
       stableService: scribble-backend-stable
       steps:
       - setWeight: 20
-      - pause: {duration: 2000}
+      - pause: {duration: 300}
       - setWeight: 50
-      - pause: {duration: 1000}
+      - pause: {duration: 300}
       - setWeight: 100
