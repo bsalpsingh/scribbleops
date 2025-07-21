@@ -7,11 +7,11 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: scribble-backend
+      app: scribble-backend-dev-rollout
   template:
     metadata:
       labels:
-        app: scribble-backend
+        app: scribble-backend-dev-rollout
     spec:
       containers:
       - name: scribble-backend
