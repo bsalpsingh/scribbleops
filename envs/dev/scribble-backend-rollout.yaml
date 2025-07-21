@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: scribble-backend
 spec:
-  replicas: 2
+  replicas: 100
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -24,10 +24,10 @@ spec:
   strategy:
     canary:
       canaryService: scribble-backend-preview
-      stableService: scribble-backend
+      stableService: scribble-backend-stable
       steps:
-      - setWeight: 20
-      - pause: {duration: 10}
+      - setWeight: 30
+      - pause: {duration: 20}
       - setWeight: 50
       - pause: {duration: 10}
       - setWeight: 100
