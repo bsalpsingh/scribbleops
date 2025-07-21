@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1753120048 
+        image: bsalsingh/scribble-api:1753124460
         ports:
         - containerPort: 8080
         envFrom:
@@ -27,7 +27,7 @@ spec:
       stableService: scribble-backend-stable
       steps:
       - setWeight: 20
-      - pause: {duration: 20}
+      - pause: {duration: 2000}
       - setWeight: 50
-      - pause: {duration: 10}
+      - pause: {duration: 1000}
       - setWeight: 100
