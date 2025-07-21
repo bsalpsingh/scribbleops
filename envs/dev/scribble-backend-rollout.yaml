@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: scribble-backend
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: scribble-backend
+  template:
+    metadata:
+      labels:
+        app: scribble-backend
+    spec:
+      containers:
+      - name: scribble-backend
+        image: bsalsingh/scribblebe:1753120048 
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      canaryService: scribble-backend-preview
+      stableService: scribble-backend
+      steps:
+      - setWeight: 20
+      - pause: {duration: 10}
+      - setWeight: 50
+      - pause: {duration: 10}
+      - setWeight: 100
