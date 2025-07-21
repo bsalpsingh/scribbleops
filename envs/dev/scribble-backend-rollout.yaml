@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: scribble-backend
 spec:
-  replicas: 100
+  replicas: 20
   revisionHistoryLimit: 2
   selector:
     matchLabels:
