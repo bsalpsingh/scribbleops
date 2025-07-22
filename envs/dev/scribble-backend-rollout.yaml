@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1753124460
+        image: bsalsingh/scribble-api:1753161209
         ports:
         - containerPort: 8080
         envFrom:
