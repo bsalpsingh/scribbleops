@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1753161209
+        image: bsalsingh/scribble-api:1753293321
         ports:
         - containerPort: 8080
         envFrom:
@@ -26,7 +26,7 @@ spec:
       canaryService: scribble-backend-preview
       stableService: scribble-backend-stable
       steps:
-      - setWeight: 20
+      - setWeight: 5
       - pause: {duration: 300}
       - setWeight: 50
       - pause: {duration: 300}
