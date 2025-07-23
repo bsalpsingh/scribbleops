@@ -6,6 +6,7 @@ metadata:
   labels:
     app: scribble-backend
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   selector:
     app: scribble-backend-dev-rollout
@@ -20,6 +21,7 @@ metadata:
   labels:
     app: scribble-backend
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   selector:
     app: scribble-backend-dev-rollout
