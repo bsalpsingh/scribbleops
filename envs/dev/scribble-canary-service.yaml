@@ -8,7 +8,9 @@ spec:
     app: scribble-backend-dev-rollout
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
 ---
 apiVersion: v1
 kind: Service
@@ -19,4 +21,6 @@ spec:
     app: scribble-backend-dev-rollout
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
