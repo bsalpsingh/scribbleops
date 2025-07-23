@@ -28,7 +28,7 @@ spec:
       trafficRouting:
         nginx:
           # Either stableIngress or stableIngresses must be configured, but not both.
-          stableIngress: primary-ingress
+          stableIngress: scribble-backend-stable-ingress
       steps:
       - setWeight: 15
       - pause: {duration: 300}
