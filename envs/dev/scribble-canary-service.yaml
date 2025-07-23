@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: scribble-backend-stable
 spec:
+  type: NodePort
   selector:
     app: scribble-backend-dev-rollout
   ports:
@@ -18,9 +19,11 @@ kind: Service
 metadata:
   name: scribble-backend-preview
 spec:
+  type: NodePort
   selector:
     app: scribble-backend-dev-rollout
   ports:
   - port: 80
     targetPort: 8080
+    nodePort: 30085  # optional, must be different
     protocol: TCP
