@@ -4,7 +4,8 @@ kind: Ingress
 metadata:
   name: scribble-backend-stable-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/canary: "false"
+    nginx.ingress.kubernetes.io/canary-weight: "0"
 spec:
   ingressClassName: nginx
   rules:
