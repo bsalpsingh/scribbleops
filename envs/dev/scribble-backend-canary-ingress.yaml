@@ -1,11 +1,12 @@
-# ingress-stable.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: scribble-backend-stable-ingress
+  name: scribble-backend-canary-ingress
   namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "20"
 spec:
   ingressClassName: nginx
   rules:
@@ -16,9 +17,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: scribble-backend-stable
+            name: scribble-backend-preview
             port:
               number: 80
-
-# ingress-canary.yaml
-
