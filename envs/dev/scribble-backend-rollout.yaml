@@ -25,6 +25,10 @@ spec:
     canary:
       canaryService: scribble-backend-preview
       stableService: scribble-backend-stable
+      trafficRouting:
+        nginx:
+          # Either stableIngress or stableIngresses must be configured, but not both.
+          stableIngress: scribble-backend-stable-ingress
       steps:
       - setWeight: 20
       - pause: {duration: 300}
