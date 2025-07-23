@@ -30,7 +30,7 @@ spec:
           # Either stableIngress or stableIngresses must be configured, but not both.
           stableIngress: scribble-backend-stable-ingress
       steps:
-      - setWeight: 20
+      - setWeight: 15
       - pause: {duration: 300}
       - setWeight: 50
       - pause: {duration: 300}
