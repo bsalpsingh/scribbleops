@@ -12,10 +12,14 @@ spec:
     metadata:
       labels:
         app: scribble-backend-dev-rollout
+        annotations:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "8080"           
+          prometheus.io/path: "/metrics"       
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1753418514
+        image: bsalsingh/scribble-api:1753418514  # canary image - 1753419020
         ports:
         - containerPort: 8080
         envFrom:
