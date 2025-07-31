@@ -1,21 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: http-traffic
+  name: canary-request-check
 spec:
   args:
+    - name: prometheus-address
     - name: ingress-host
   metrics:
-    - name: http-traffic-check
-      interval: 1m
-      successCondition: result[0] >= 10
+    - name: request-volume
+      interval: 30
+      count: 3
+      successCondition: result > 10
       failureLimit: 1
       provider:
         prometheus:
-          address: http://scribble-prometheus-server.default.svc.cluster.local
-          timeout: 40
-          headers:
-            - key: X-Scope-OrgID
-              value: tenant_a
+          address: "{{args.prometheus-address}}"
           query: |
-            sum(increase(http_requests_total{host="{{args.ingress-host}}"}[5m]))
+            sum(increase(nginx_ingress_controller_requests{host="{{args.ingress-host}}"}[5m]))

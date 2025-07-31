@@ -4,7 +4,6 @@ metadata:
   name: scribble-backend
 spec:
   replicas: 10
-  revisionHistoryLimit: 4
   selector:
     matchLabels:
       app: scribble-backend-dev-rollout
@@ -18,30 +17,29 @@ spec:
         prometheus.io/path: "/metrics"
     spec:
       containers:
-        - name: scribble-backend
-          image: bsalsingh/scribble-api:1753983755  # canary image
-          ports:
-            - containerPort: 8080
-          envFrom:
-            - secretRef:
-                name: scribble-secret
+      - name: scribble-backend
+        image: bsalsingh/scribble-api:1753983765
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: scribble-secret
   strategy:
     canary:
-      analysis:
-        templates:
-          - templateName: http-traffic
-        startingStep: 2
-        args:
-          - name: ingress-host
-            value: myapp.local
       canaryService: scribble-backend-preview
       stableService: scribble-backend-stable
       trafficRouting:
         nginx:
           stableIngress: scribble-backend-stable-ingress
       steps:
-        - setWeight: 15
-        - pause: { duration: 300 }
-        - setWeight: 50
-        - pause: { duration: 300 }
-        - setWeight: 100  # Final rollout step
+      - setWeight: 20
+      - pause: {duration: 300}     # wait 5 minutes for traffic
+      - analysis:
+          templates:
+          - templateName: canary-request-check
+          args:
+          - name: prometheus-address
+            value: http://prometheus.monitoring.svc.cluster.local:9090
+          - name: ingress-host
+            value: myapp.local
+      - setWeight: 100
