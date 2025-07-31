@@ -18,5 +18,7 @@ spec:
             - key: X-Scope-OrgID
               value: tenant_a
           query: |
-            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}",status!~"5.*"}[5m])) /
-            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}"}[5m]))
+            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}",status!~"5.*"}[1m])) /
+            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}"}[1m]))
+
+            
