@@ -6,14 +6,14 @@ spec:
   args:
     - name: ingress-host
   metrics:
-    - name: http-traffic
+    - name: http-traffic-check
       interval: 1m
-      successCondition: result[0] >= 10  
+      successCondition: result[0] >= 10
       failureLimit: 1
       provider:
         prometheus:
           address: http://scribble-prometheus-server.default.svc.cluster.local
-          timeout: 40
+          timeout: "40s"
           headers:
             - key: X-Scope-OrgID
               value: tenant_a

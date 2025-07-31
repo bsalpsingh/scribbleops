@@ -18,13 +18,13 @@ spec:
         prometheus.io/path: "/metrics"
     spec:
       containers:
-      - name: scribble-backend
-        image: bsalsingh/scribble-api:1753983765  # canary image - 1753419020
-        ports:
-        - containerPort: 8080
-        envFrom:
-        - secretRef:
-            name: scribble-secret
+        - name: scribble-backend
+          image: bsalsingh/scribble-api:1753983765  # canary image
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: scribble-secret
   strategy:
     canary:
       analysis:
@@ -40,8 +40,8 @@ spec:
         nginx:
           stableIngress: scribble-backend-stable-ingress
       steps:
-      - setWeight: 15
-      - pause: {duration: 300}
-      - setWeight: 50
-      - pause: {duration: 300}
-      - setWeight: 100
+        - setWeight: 15
+        - pause: { duration: 300 }
+        - setWeight: 50
+        - pause: { duration: 300 }
+        - setWeight: 100  # Final rollout step
