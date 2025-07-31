@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+    - name: ingress-host
+  metrics:
+    - name: success-rate
+      interval: 1m
+      successCondition: result[0] >= 0.90  # Rollback if < 90%
+      failureLimit: 1
+      provider:
+        prometheus:
+          address: http://scribble-prometheus-server.default.svc.cluster.local
+          timeout: 40
+          headers:
+            - key: X-Scope-OrgID
+              value: tenant_a
+          query: |
+            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}",status!~"5.*"}[5m])) /
+            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}"}[5m]))

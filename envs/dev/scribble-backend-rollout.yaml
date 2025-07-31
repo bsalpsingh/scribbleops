@@ -27,6 +27,14 @@ spec:
             name: scribble-secret  
   strategy:
     canary:
+      analysis:
+        templates:
+          - templateName: success-rate
+        startingStep:2
+        args:
+          - name: ingress-host
+            value: myapp.local
+
       canaryService: scribble-backend-preview
       stableService: scribble-backend-stable
       trafficRouting:
