@@ -39,7 +39,7 @@ spec:
           - templateName: canary-request-check
           args:
           - name: prometheus-address
-            value: http://prometheus.monitoring.svc.cluster.local:9090
+            value: http://scribble-prometheus-server.default.svc.cluster.local:9090
           - name: ingress-host
             value: myapp.local
       - setWeight: 100
