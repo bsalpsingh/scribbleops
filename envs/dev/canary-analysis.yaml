@@ -9,7 +9,7 @@ spec:
   metrics:
     - name: request-volume
       interval: 30
-      count: 3
+      count: 2
       successCondition: result > 10
       failureLimit: 1
       provider:
