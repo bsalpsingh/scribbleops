@@ -8,7 +8,7 @@ spec:
     - name: ingress-host
   metrics:
     - name: canary-request-check
-      interval: 30
+      interval: 30s
       count: 2
       successCondition: result > 10
       failureLimit: 1
