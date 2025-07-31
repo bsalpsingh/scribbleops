@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: scribble-backend
-        image: bsalsingh/scribble-api:1753898156  # canary image - 1753419020
+        image: bsalsingh/scribble-api:1753983765  # canary image - 1753419020
         ports:
         - containerPort: 8080
         envFrom:
