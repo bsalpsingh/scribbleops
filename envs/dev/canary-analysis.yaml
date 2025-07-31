@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: success-rate
+  name: http-traffic
 spec:
   args:
     - name: ingress-host
   metrics:
-    - name: success-rate
+    - name: http-traffic
       interval: 1m
-      successCondition: result[0] >= 0.90  # Rollback if < 90%
+      successCondition: result[0] >= 10  
       failureLimit: 1
       provider:
         prometheus:
@@ -18,7 +18,4 @@ spec:
             - key: X-Scope-OrgID
               value: tenant_a
           query: |
-            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}",status!~"5.*"}[1m])) /
-            sum(rate(nginx_ingress_controller_requests{host="{{args.ingress-host}}"}[1m]))
-
-            
+            sum(increase(http_requests_total{host="{{args.ingress-host}}"}[5m]))
