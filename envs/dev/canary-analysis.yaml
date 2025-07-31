@@ -13,7 +13,7 @@ spec:
       provider:
         prometheus:
           address: http://scribble-prometheus-server.default.svc.cluster.local
-          timeout: "40s"
+          timeout: 40
           headers:
             - key: X-Scope-OrgID
               value: tenant_a
